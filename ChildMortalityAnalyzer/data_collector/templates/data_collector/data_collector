@@ -1,0 +1,17 @@
+<!-- add_data.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Child Mortality Data</title>
+</head>
+<body>
+    <h1>Add Child Mortality Data</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <a href="{% url 'export_data' %}">Export Data to CSV</a>
+</body>
+</html>

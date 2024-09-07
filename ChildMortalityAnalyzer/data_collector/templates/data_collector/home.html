@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child Mortality Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            color: #333;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        nav {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #444;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Child Mortality Analyzer</h1>
+    </header>
+    <div class="container">
+        <p>
+            Reducing child mortality in Kenya is crucial for improving the nation's development and well-being. Our application aims to leverage data analysis to understand child mortality patterns and enhance healthcare interventions. High child mortality rates are a significant challenge, particularly in urban areas with healthcare access disparities.
+        </p>
+        <p>
+            This tool aligns with Kenya's national health goals and global efforts under SDG 3 to end preventable deaths of children under five by 2030. It provides insights into mortality patterns through a comprehensive database that integrates region-specific data, health facility capacities, and mortality statistics.
+        </p>
+        <nav>
+            <a href="{% url 'add_data' %}">Add Data</a>
+            <a href="{% url 'export_data' %}">Export Data</a>
+        </nav>
+    </div>
+    <footer>
+        <p>&copy; 2024 Erastus Kihali</p>
+    </footer>
+</body>
+</html>
