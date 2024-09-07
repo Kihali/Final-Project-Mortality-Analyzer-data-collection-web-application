@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('add/', views.add_data, name='add_data'),
     path('export/', views.export_data, name='export_data'),
-    path('clear_data/', views.clear_data, name='clear_data'),
+    path('clear/', views.clear_data, name='clear_data'),
 ]

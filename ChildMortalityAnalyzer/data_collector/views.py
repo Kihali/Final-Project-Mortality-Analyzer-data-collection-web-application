@@ -2,9 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import ChildMortalityForm
 from .models import ChildMortality
 import csv
-from django.http import HttpResponse
-from django.http import JsonResponse
-from data_collector.models import ChildMortality
+from django.http import HttpResponse, JsonResponse
 
 def home(request):
     return render(request, 'data_collector/home.html')
@@ -14,7 +12,10 @@ def add_data(request):
         form = ChildMortalityForm(request.POST)
         if form.is_valid():
             form.save()
+            print("Form saved successfully!")  # Debugging statement
             return redirect('add_data')
+        else:
+            print("Form errors:", form.errors)  # Debugging statement
     else:
         form = ChildMortalityForm()
     return render(request, 'data_collector/add_data.html', {'form': form})
@@ -24,16 +25,23 @@ def export_data(request):
     response['Content-Disposition'] = 'attachment; filename="child_mortality_data.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Year', 'Mortality Rate'])
+    writer.writerow([
+        'Facility Name', 'Facility Location', 'Facility Capacity',
+        'Child Age', 'Child Gender', 'Cause of Death', 
+        'Region Name', 'Population', 'GDP'
+    ])
 
     for data in ChildMortality.objects.all():
-        writer.writerow([data.year, data.mortality_rate])
+        writer.writerow([
+            data.facility_name, data.facility_location, data.facility_capacity, 
+            data.child_age, data.child_gender, data.cause_of_death, 
+            data.region_name, data.population, data.gdp
+        ])
 
     return response
 
 def clear_data(request):
     if request.method == 'POST':
-        # Clear data from the database
         ChildMortality.objects.all().delete()
-        return JsonResponse({'status': 'success'})
+        return JsonResponse({'message': 'Data cleared successfully!'})
     return JsonResponse({'status': 'fail'}, status=400)
